@@ -1,0 +1,19 @@
+export SS_DATABASE_SERVER="localhost"
+export SS_DATABASE_USERNAME="root"
+export SS_DATABASE_PASSWORD="dont-use-in-production"
+export SS_DATABASE_NAME="silverstripe"
+
+export SS_ENVIRONMENT_TYPE="dev"
+
+# log to /vagrant/logs/silverstripe/error.log
+export SS_ERROR_LOG="/../logs/silverstripe/error.log"
+
+export SS_DEFAULT_ADMIN_USERNAME="admin"
+export SS_DEFAULT_ADMIN_PASSWORD="password"
+
+export SS_SASSC_PATH="/usr/local/bin/sassc"
+export SS_LESSC_PATH="/usr/local/bin/lessc"
+export SS_WKHTMLTOPDF_PATH="/usr/bin/wkhtmltopdf"
+export SS_WKHTMLTOIMAGE_PATH="/usr/bin/wkhtmltoimage"
+
+export SS_BASE_URL="http://127.0.0.1"

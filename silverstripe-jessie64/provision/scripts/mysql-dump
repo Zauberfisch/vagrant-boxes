@@ -1,0 +1,2 @@
+#!/bin/bash
+mysqldump --user=root --password='dont-use-in-production' "$@"

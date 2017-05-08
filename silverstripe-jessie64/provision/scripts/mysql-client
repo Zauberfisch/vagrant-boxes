@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql --user=root --password='dont-use-in-production' "$@"

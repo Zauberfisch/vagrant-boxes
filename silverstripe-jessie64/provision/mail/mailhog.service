@@ -1,0 +1,12 @@
+[Unit]
+Description=MailHog Mailcatcher
+After=local-fs.target network.target
+
+[Service]
+WorkingDirectory=/opt/MailHog/
+ExecStart=/opt/MailHog/MailHog
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
