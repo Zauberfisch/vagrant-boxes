@@ -72,7 +72,7 @@ You can then simply tick the "use environment" checkbox to have the installer au
       
   **Note: the scripts will not ask you to confirm before deleting your data**
   
-- **PostgreSQL**-Server Version 9.4
+- **PostgreSQL**-Server Version 9.4    
   Username: `postgres`    
   Password: `dont-use-in-prodction`    
   
