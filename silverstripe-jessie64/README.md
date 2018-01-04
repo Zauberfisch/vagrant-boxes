@@ -41,7 +41,8 @@ After booting, the following folders will be created:
 
 Tis box is intended to be used for a single project, installing multiple SilverStripe sites is possible but will require additional configuration.
 
-**Note: DO NOT use in production**, this box is intended for development and testing purpose only.
+**Note: DO NOT use in production**, this box is intended for development and testing purpose only. Additionally, it is
+assumed that this box is used in a safe environment, default passwords are used and ports are open.
 
 ### Installing SilverStripe
 
@@ -71,13 +72,29 @@ You can then simply tick the "use environment" checkbox to have the installer au
       
   **Note: the scripts will not ask you to confirm before deleting your data**
   
-- **PHP** CLI and mod_php Version 7.0 and 5.6    
-  Run `$ vagrant ssh -c "php-switch <5|7>"` to switch the php version   
+- **PostgreSQL**-Server Version 9.4
+  Username: `postgres`    
+  Password: `dont-use-in-prodction`    
+  
+  **Note: the database is located inside the virtual machine and will be lost if the virtual machine is deleted**
+  
+  - CLI Client: `$ vagrant ssh -c "sudo -u postgres psql silverstripe"`
+  - Import SQL File: `$ vagrant ssh -c "sudo -u postgres psql silverstripe < /vagrant/dump.sql"`
+  - Export SQL File: `$ vagrant ssh -c "sudo -u postgres pg_dump silverstripe > /vagrant/dump.sql"`
+  - Delete Database: `$ vagrant ssh -c "sudo -u postgres psql -c 'drop database if exists silverstripe;'"`
+  - Create Database: `$ vagrant ssh -c "sudo -u postgres psql -c 'create database silverstripe;'"`
+  
+- **PHP** CLI and mod_php Version 7.2, 7.1, 7.0 and 5.6    
+  Run `$ vagrant ssh -c "php-switch <5|7|5.6|7.0|7.1|7.2>"` to switch the php version   
   For full phpinfo() see
-  [php7-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/latest/php7-info-apache.html),
-  [php7-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/latest/php7-info-cli.txt),
-  [php5-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/latest/php5-info-apache.html) and
-  [php5-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/latest/php5-info-cli.txt)
+  [php7.2-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.2-info-apache.html),
+  [php7.2-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.2-info-cli.txt),
+  [php7.1-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.1-info-apache.html),
+  [php7.1-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.1-info-cli.txt),
+  [php7.0-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.0-info-apache.html),
+  [php7.0-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php7.0-info-cli.txt),
+  [php5.6-info-apache.html](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php5.6-info-apache.html) and
+  [php5.6-info-cli.txt](http://boxes.vagrant.zauberfisch.at/silverstripe-jessie64/0.0.3/php5.6-info-cli.txt)
 - **_ss_environment.php & /etc/environment**    
 
       SS_DATABASE_SERVER = "localhost"
@@ -110,12 +127,13 @@ You can then simply tick the "use environment" checkbox to have the installer au
   - **bower** Version 1.8
   - **grunt** Version 1.2
   - **gulp** Version 3.9
-- **composer** Version 1.4
-  - **composer-asset-plugin** Version 1.3    
+- **composer** Version 1.5
+  - **composer-asset-plugin** Version 1.4    
     npm & bower package management via composer
 - **psysh** Version 0.8
-- **sake** Version 4.0-alpha7
-- **wkhtmltopdf & wkhtmltoimage** Version 0.12 (Without patched QT)
+- **sspak**
+- **sake** Version 4.0.1
+- **wkhtmltopdf & wkhtmltoimage** Version 0.12.3 (With patched QT)
 
 
 ## License

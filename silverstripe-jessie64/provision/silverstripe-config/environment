@@ -13,7 +13,7 @@ export SS_DEFAULT_ADMIN_PASSWORD="password"
 
 export SS_SASSC_PATH="/usr/local/bin/sassc"
 export SS_LESSC_PATH="/usr/local/bin/lessc"
-export SS_WKHTMLTOPDF_PATH="/usr/bin/wkhtmltopdf"
-export SS_WKHTMLTOIMAGE_PATH="/usr/bin/wkhtmltoimage"
+export SS_WKHTMLTOPDF_PATH="/usr/local/bin/wkhtmltopdf"
+export SS_WKHTMLTOIMAGE_PATH="/usr/local/bin/wkhtmltoimage"
 
 export SS_BASE_URL="http://127.0.0.1"

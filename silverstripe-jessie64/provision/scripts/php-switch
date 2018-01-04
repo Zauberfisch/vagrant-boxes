@@ -2,12 +2,12 @@
 
 function help_me()
 {
-	echo "Usage: $0 <5|7> [-v|-q]"
+	echo "Usage: $0 <5|7|5.6|7.0|7.1|7.2> [-v|-q]"
 }
 
 function set_version()
 {
-	IGNORE="^\s*(To activate the new configuration, you need to run:|service apache2 restart|Module php[0-9\.]* already disabled|Considering conflict php5 for php7.0:)\s*$"
+	IGNORE="^\s*(To activate the new configuration, you need to run:|service apache2 restart|Module (php[0-9\.]*|mpm_\w*) already disabled|Considering.*:)\s*$"
 	if [[ "$2" == "-q" ]]
 	then
 		IGNORE=""
@@ -16,16 +16,25 @@ function set_version()
 	then
 		IGNORE="$^"
 	fi
-	sudo a2dismod php5 | grep -vP "$IGNORE"
+	sudo a2dismod php5.6 | grep -vP "$IGNORE"
 	sudo a2dismod php7.0 | grep -vP "$IGNORE"
+	sudo a2dismod php7.1 | grep -vP "$IGNORE"
+	sudo a2dismod php7.2 | grep -vP "$IGNORE"
+	sudo a2dismod mpm_prefork | grep -vP "$IGNORE"
+	sudo a2dismod mpm_worker | grep -vP "$IGNORE"
+	sudo a2dismod mpm_event | grep -vP "$IGNORE"
 	sudo a2enmod "php$1" | grep -vP "$IGNORE"
 	sudo update-alternatives --set php "/usr/bin/php$1" | grep -vP "$IGNORE"
 	sudo systemctl restart apache2.service
 }
 
 case "$1" in
-	("5") set_version "5" "$2" ;;
-	("7") set_version "7.0" "$2" ;;
+	("5") set_version "5.6" "$2" ;;
+	("5.6") set_version "5.6" "$2" ;;
+	("7") set_version "7.2" "$2" ;;
+	("7.0") set_version "7.0" "$2" ;;
+	("7.1") set_version "7.1" "$2" ;;
+	("7.2") set_version "7.2" "$2" ;;
 	(*) help_me ;;
 esac
 

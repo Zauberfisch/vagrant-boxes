@@ -18,7 +18,7 @@ Default PhpMyAdmin URL: http://127.0.0.1:8080/phpmyadmin/
 Default MailHog URL: http://127.0.0.1:8025/
 
 Available Commands: php-switch, mysql-client, mysql-dump, sake, sassc, lessc, wkhtmltopdf, composer, psysh, npm, bower, grunt, gulp ...
-Example: vagrant ssh -c \"php-switch <5|7>\"
+Example: vagrant ssh -c \"php-switch <5|7|5.6|7.0|7.1|7.2>\"
 
 See https://github.com/Zauberfisch/vagrant-boxes/tree/master/silverstripe-jessie64 for a list of commands/features, help and bug reports"
 end

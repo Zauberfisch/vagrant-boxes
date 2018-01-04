@@ -15,8 +15,8 @@ define('SS_DEFAULT_ADMIN_PASSWORD', 'password');
 
 define('SS_SASSC_PATH', '/usr/local/bin/sassc');
 define('SS_LESSC_PATH', '/usr/local/bin/lessc');
-define('SS_WKHTMLTOPDF_PATH', '/usr/bin/wkhtmltopdf');
-define('SS_WKHTMLTOIMAGE_PATH', '/usr/bin/wkhtmltoimage');
+define('SS_WKHTMLTOPDF_PATH', '/usr/local/bin/wkhtmltopdf');
+define('SS_WKHTMLTOIMAGE_PATH', '/usr/local/bin/wkhtmltoimage');
 
 
 global $_FILE_TO_URL_MAPPING;

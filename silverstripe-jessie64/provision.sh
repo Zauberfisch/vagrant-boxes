@@ -5,8 +5,9 @@ cd /vagrant/
 # general
 # ===================================
 apt-get update -y
-apt-get install -y curl build-essential python-software-properties tmux screen
+apt-get install -y curl build-essential python-software-properties tmux screen apt-transport-https
 apt-get install -y git wget vim tree htop screen zip unzip jq
+
 apt-get install -y nodejs npm
 ln -s $(which nodejs) /usr/local/bin/node
 npm install -g bower
@@ -15,18 +16,28 @@ npm install -g grunt-cli
 npm install -g gulp
 npm install -g less
 
-# dotdeb php builds
+
+
+
+# php repos
 # ===================================
-curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add -
+#curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add -
+#cat >> /etc/apt/sources.list << EOF
+#deb http://packages.dotdeb.org jessie all
+#deb-src http://packages.dotdeb.org jessie all
+#EOF
+
+curl -sS https://packages.sury.org/php/apt.gpg | apt-key add -
 cat >> /etc/apt/sources.list << EOF
-deb http://packages.dotdeb.org jessie all
-deb-src http://packages.dotdeb.org jessie all
+deb https://packages.sury.org/php/ jessie main
 EOF
+
 apt-get update -y
 
 # database
 # ===================================
 ./provision/mysql.sh
+./provision/postgresql.sh
 
 # helper scripts
 # ===================================
@@ -54,7 +65,14 @@ apt-get update -y
 
 # wkhtmltopdf
 # ===================================
+# current repository version of wkhtmltopdf can not run headless
+# for now, let's use a custom build with patched qt
+# still install the package though, to install all dependencies
 apt-get install -y wkhtmltopdf
+cp provision/wkhtmltopdf/wkhtmltopdf /usr/local/bin
+cp provision/wkhtmltopdf/wkhtmltoimage /usr/local/bin
+update-alternatives --set wkhtmltopdf "/usr/local/bin/wkhtmltopdf"
+update-alternatives --set wkhtmltoimage "/usr/local/bin/wkhtmltoimage"
 
 # mail
 # ===================================
