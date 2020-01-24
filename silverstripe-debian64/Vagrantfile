@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/contrib-buster64"
+
+  # synced folder, writeable by www-data
+  config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :owner => "www-data", :mount_options => ["dmode=777","fmode=777"]
+  # apache2 port
+  config.vm.network :forwarded_port, :guest => 80, :host => 8080, :auto_correct => true
+  # MailHog port
+  config.vm.network :forwarded_port, :guest => 8025, :host => 8025, :auto_correct => true
+
+  config.vm.provision :shell, path: "provision.sh"
+  config.vm.provision :shell, inline: "mkdir -p /vagrant/logs/apache2 /vagrant/logs/php /vagrant/www /vagrant/logs/silverstripe; systemctl restart apache2.service", run: :always
+end
