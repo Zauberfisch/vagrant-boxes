@@ -1,5 +1,11 @@
 # zauberfisch's vagrant boxes
 
+- **zauberfisch/silverstripe-debian64**    
+  Debian 10 x86_64 LAMP Box with many extra features, pre-configured for SilverStripe    
+  - [Source & Documentation](silverstripe-debian64/)   
+  - [Vagrant / atlas.hashicorp.com](https://atlas.hashicorp.com/zauberfisch/boxes/silverstripe-debian64)    
+  - [Direct .box Download](http://boxes.vagrant.zauberfisch.at/silverstripe-debian64/latest/) (not recommended)
+
 - **zauberfisch/silverstripe-jessie64**    
   Debian 8 x86_64 LAMP Box with many extra features, pre-configured for SilverStripe    
   - [Source & Documentation](silverstripe-jessie64/)   
